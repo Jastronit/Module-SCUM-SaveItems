@@ -1,0 +1,25 @@
+{
+    "scan_interval": 1,
+    "zones": [
+        {
+            "asset": "/Game/ConZ_Files/BaseBuilding/BaseElements/BP_Base_Flag.BP_Base_Flag_C",
+            "radius": 5000,
+            "shape": "square"
+        },
+        {
+            "asset": "/Game/ConZ_Files/BaseBuilding/BaseElements/BP_Base_Flag_Supporter.BP_Base_Flag_Supporter_C",
+            "radius": 5000,
+            "shape": "square"
+        },
+        {
+            "asset": "/Game/ConZ_Files/BaseBuilding/BaseElements/BP_Base_Fire_Ring.BP_Base_Fire_Ring_C",
+            "radius": 800,
+            "shape": "circle"
+        },
+        {
+            "asset": "/Game/ConZ_Files/BaseBuilding/BaseElements/BP_Base_Improvised_Fireplace.BP_Base_Improvised_Fireplace_C",
+            "radius": 400,
+            "shape": "circle"
+        }
+    ]
+}

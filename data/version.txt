@@ -1,0 +1,35 @@
+[Module] SaveItems
+
+[1.0] Alpha
+Saves every item on the ground that spawns within the player's reach.
+
+[2.0] Alpha
+Saves only in the player's base zones.
+Fixed radius setting.
+
+[2.1] Alpha
+Changed zone shape from circle to cube – now matches the flag zone exactly.
+
+[2.2] Alpha
+Fixed incorrect base detection.
+
+[3.0] Alpha
+Added support for multiple accounts in singleplayer.
+
+[3.1] Alpha
+Sends SP account ID for PRISONER.
+Sends number of flags for FLAG ZONES.
+
+[3.2] Beta
+First beta version.
+Reworked PRISONER description from SP account ID to name.
+Reworked flag zone detection. Instant reaction to flag placement and removal; no restart required.
+Added settings to change type, size, and shape of zones.
+Added settings to change the item scanning timer in the world.
+Added automatic detection of the standard SCUM.db save file location.
+
+[3.3] Beta
+Reworked database opening method.
+Reworked column reading system from index to column name; more robust if new columns are added.
+Added indexing for each necessary column, dramatically reducing scanning time.
+Created new widgets for the new module loader.
