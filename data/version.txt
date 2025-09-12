@@ -33,3 +33,9 @@ Reworked database opening method.
 Reworked column reading system from index to column name; more robust if new columns are added.
 Added indexing for each necessary column, dramatically reducing scanning time.
 Created new widgets for the new module loader.
+
+[3.4] Beta
+Added widget for creating custom overlay windows from all widgets in the module.
+Detailed settings for parameters and colors.
+Added saving of custom overlay windows to config/custom_overlays.json.
+Configurable show/hide mode for each custom overlay window.

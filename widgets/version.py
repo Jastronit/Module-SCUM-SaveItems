@@ -12,6 +12,8 @@ def create_widget(BaseClass, module_name):
             layout = QVBoxLayout(self)
             self.setLayout(layout)
 
+            self.setMinimumSize(333, 200)
+
             # text edit
             self.text = QTextEdit()
             self.text.setReadOnly(True)
@@ -50,4 +52,4 @@ def create_widget(BaseClass, module_name):
 
 # Predvolená pozícia dock widgetu
 def get_widget_dock_position():
-    return Qt.UpDockWidgetArea
+    return Qt.RightDockWidgetArea, 1  # oblasť, poradie

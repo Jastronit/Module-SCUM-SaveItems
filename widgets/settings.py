@@ -1,4 +1,5 @@
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QPushButton
+from PySide6.QtCore import Qt
 import os
 import sys
 import subprocess
@@ -10,6 +11,8 @@ def create_widget(BaseClass, module_name):
 
             layout = QVBoxLayout(self)
             self.setLayout(layout)
+
+            self.setMaximumSize(500, 200)
 
             # Tlačidlo na otvorenie config.json
             self.btn_config = QPushButton("config.json")
@@ -46,3 +49,8 @@ def create_widget(BaseClass, module_name):
             return Qt.RightDockWidgetArea
 
     return SettingsWidget()
+
+# Predvolená pozícia dock widgetu
+def get_widget_dock_position():
+    return Qt.RightDockWidgetArea, 2  # oblasť, poradie
+

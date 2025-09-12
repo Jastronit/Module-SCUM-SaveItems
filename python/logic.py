@@ -8,10 +8,10 @@ import configparser
 import os
 import json
 import platform
-import main  # Importovanie hlavného modulu pre prístup k MODLOADER_VERSION
 from datetime import datetime
 
-from main import MODLOADER_VERSION  # Importovanie verzie modloadera
+# import main  # Importovanie hlavného modulu pre prístup k MODLOADER_VERSION nefunguje ak je binárny.
+# from main import MODLOADER_VERSION  # Importovanie verzie modloadera nefunguje ak je binárny.
 
 # ////---- Cesty k súborom ----////
 module_root = os.path.dirname(os.path.dirname(__file__))
@@ -269,7 +269,6 @@ def get_expiring_items(conn):
 def get_item_positions(conn, item_ids):
     if not item_ids:
         return {}
-    conn.row_factory = sqlite3.Row
     placeholders = ','.join(['?'] * len(item_ids))
     query = f"""
         SELECT id, location_x, location_y 
@@ -384,9 +383,9 @@ def main_loop(conn=None, stop_event=None):
 
 # ////---- Spustenie hlavnej funkcie z main.py ----////
 def logic_main_init(stop_event=None):
-    # Ak verzia modloadera je nižšia ako 0.1, ukončenie kódu
-    if main.MODLOADER_VERSION < (0, 1):
-        return
+    # Ak verzia modloadera je nižšia ako 0.1, ukončenie kódu po skompilovaní prestáva fungovať
+    #if main.MODLOADER_VERSION < (0, 1):
+    #    return
 
     # Vytvoríme log.txt ak neexistuje
     try:
@@ -397,7 +396,7 @@ def logic_main_init(stop_event=None):
 
     # Ak DB_PATH neexistuje, vypíšeme správu a ukončíme logiku
     if not DB_PATH or not os.path.exists(DB_PATH):
-        log_to_console("[SaveItems] SCUM.db file not found or disk is disconnected. Please enter the path manually in config/path.ini.")
+        log_to_console("[SaveItems] SCUM.db file not found or disk is disconnected. Please enter the path manually in config/path.ini and restart the application.")
         return
     
     # Načítame databázu a spustíme hlavnú slučku

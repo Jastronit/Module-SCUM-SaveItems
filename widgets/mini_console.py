@@ -21,21 +21,7 @@ def create_widget(BaseClass, module_name):
             layout = QVBoxLayout(self)
             self.setLayout(layout)
 
-            self.setMinimumSize(333, 100)
-
-            # banner
-            if is_dark_mode():
-                banner_path = os.path.join(os.path.dirname(__file__), "../assets/banners/CONSOLE.png")
-            else:
-                banner_path = os.path.join(os.path.dirname(__file__), "../assets/banners/CONSOLE_DARK.png")
-            if os.path.exists(banner_path):
-                self.banner = QLabel()
-                pixmap = QPixmap(banner_path)
-                self.banner.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
-                # zväčšenie / prispôsobenie na šírku widgetu
-                self.banner.setPixmap(pixmap.scaledToHeight(32, Qt.SmoothTransformation))
-                self.banner.setAlignment(Qt.AlignCenter)
-                layout.addWidget(self.banner)
+            self.setMinimumSize(100, 50)
 
             # konzola
             self.text = QTextEdit()
