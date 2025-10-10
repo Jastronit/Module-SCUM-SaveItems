@@ -39,3 +39,6 @@ Added widget for creating custom overlay windows from all widgets in the module.
 Detailed settings for parameters and colors.
 Added saving of custom overlay windows to config/custom_overlays.json.
 Configurable show/hide mode for each custom overlay window.
+
+[3.5] Beta
+Improved the custom_overlays.py widget, which now includes the ability to set shortcuts for toggling the visibility of overlay windows.

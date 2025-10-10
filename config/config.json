@@ -1,5 +1,5 @@
 {
-    "scan_interval": 1,
+    "scan_interval": 16,
     "zones": [
         {
             "asset": "/Game/ConZ_Files/BaseBuilding/BaseElements/BP_Base_Flag.BP_Base_Flag_C",
