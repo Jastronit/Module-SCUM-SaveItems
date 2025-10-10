@@ -14,6 +14,11 @@ def create_widget(BaseClass, module_name):
 
             self.setMaximumSize(500, 200)
 
+            # Tlačidlo na otvorenie custom_overlays.json
+            self.btn_config = QPushButton("custom_overlays.json")
+            self.btn_config.clicked.connect(lambda: self.open_file("custom_overlays.json"))
+            layout.addWidget(self.btn_config)
+
             # Tlačidlo na otvorenie config.json
             self.btn_config = QPushButton("config.json")
             self.btn_config.clicked.connect(lambda: self.open_file("config.json"))

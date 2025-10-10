@@ -42,3 +42,4 @@ Configurable show/hide mode for each custom overlay window.
 
 [3.5] Beta
 Improved the custom_overlays.py widget, which now includes the ability to set shortcuts for toggling the visibility of overlay windows.
+Added the option to open custom_overlays.json from the settings widget.
