@@ -1,0 +1,17 @@
+{
+  "Mini console": {
+    "x": 1646,
+    "y": 0,
+    "w": 273,
+    "h": 117,
+    "bg": "rgba(0,0,0,0.0)",
+    "widgets": [
+      "mini_console"
+    ],
+    "widget_bgs": {
+      "mini_console": "rgba(0,0,0,0)"
+    },
+    "user_visible": false,
+    "shortcut": "alt+c"
+  }
+}
