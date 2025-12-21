@@ -1,4 +1,5 @@
 [Module] SaveItems
+[Access] SCUM.db
 
 [1.0] Alpha
 Saves every item on the ground that spawns within the player's reach.
@@ -43,3 +44,9 @@ Configurable show/hide mode for each custom overlay window.
 [3.5] Beta
 Improved the custom_overlays.py widget, which now includes the ability to set shortcuts for toggling the visibility of overlay windows.
 Added the option to open custom_overlays.json from the settings widget.
+
+[3.6]
+Added support for the new game version v1.2 while maintaining support for older versions.
+Removed the Settings widget (temporarily fully replaced by the Files widget).
+Added the Files widget.
+Fixed a bug in the Custom Overlays widget where spin boxes for the overall overlay background were not updating after selecting an overlay window from the list.

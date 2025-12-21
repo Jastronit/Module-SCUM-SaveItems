@@ -1,9 +1,9 @@
 {
   "Mini console": {
-    "x": 1582,
+    "x": 0,
     "y": 0,
-    "w": 338,
-    "h": 138,
+    "w": 364,
+    "h": 95,
     "bg": "rgba(0,0,0,0.0)",
     "widgets": [
       "mini_console"

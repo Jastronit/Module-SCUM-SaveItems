@@ -21,7 +21,7 @@ log_path = os.path.join(module_root, 'data', 'log.txt')
 path_ini_path = os.path.join(module_root, 'config' ,'path.ini')
 # ////-----------------------------------------------------------------------------------------
 
-# ////---- Logovanie do log.txt ktorý si načíta GUI modul ----////
+# ////---- Logovanie do log.txt ktorý si načíta GUI widget console ----////
 def log_to_console(message, color=None):
     timestamp = datetime.now().strftime("%H:%M:%S")
     line = f"[{timestamp}] {message}\n"
@@ -210,7 +210,7 @@ def close_db_connection(conn):
 # ////-----------------------------------------------------------------------------------------
 
 # ////---- Získanie ID používateľského profilu ----////
-def get_user_profile_id(conn):
+def get_user_profile_id_old(conn):
     # Výsledky budú ako slovník {názov_stĺpca: hodnota}
     cursor = conn.cursor()
 
@@ -236,6 +236,40 @@ def get_user_profile_id(conn):
     """, (entity_system_id,))
     result = cursor.fetchone()
 
+    return result['user_profile_id'] if result else None
+
+def get_user_profile_id(conn):
+    cursor = conn.cursor()
+    
+    # Skús najskôr v1.2 (BP_Prisoner_ES)
+    cursor.execute("""
+        SELECT entity_system_id
+        FROM entity
+        WHERE class = 'BP_Prisoner_ES' AND flags = 0
+    """)
+    row = cursor.fetchone()
+    
+    # Ak nenájdeš v1.2, skús v1.1 (FPrisonerEntity)
+    if not row:
+        cursor.execute("""
+            SELECT entity_system_id
+            FROM entity
+            WHERE class = 'FPrisonerEntity' AND flags = 0
+        """)
+        row = cursor.fetchone()
+    
+    # Ak stále nič, vráť None
+    if not row:
+        return None
+    
+    entity_system_id = row['entity_system_id']
+    
+    cursor.execute("""
+        SELECT user_profile_id
+        FROM entity_system
+        WHERE id = ?
+    """, (entity_system_id,))
+    result = cursor.fetchone()
     return result['user_profile_id'] if result else None
 # ////-----------------------------------------------------------------------------------------
 
@@ -283,9 +317,11 @@ def get_item_positions(conn, item_ids):
 
 # ////---- Získanie pozícií zón používateľa ----////
 def get_all_zones_positions(conn, user_profile_id):
+    # Načítame pravidlá z config.json
     config = load_or_create_config()
     asset_rules = {entry["asset"]: entry for entry in config.get("zones", [])}
 
+    # Získame všetky zóny používateľa
     cursor = conn.cursor()
     cursor.execute("""
         SELECT id
@@ -345,6 +381,10 @@ def main_loop(conn=None, stop_event=None):
     # Hlavná slučka pre kontrolu položiek a ich expiráciu
     while not (stop_event and stop_event.is_set()):
         try:
+            # Získanie všetkých položiek, ktoré môžu expirovať
+            # a ich pozícií
+            # a pozícií všetkých zón používateľa
+            # a mena používateľa
             expiring_ids = get_expiring_items(conn)
             item_positions = get_item_positions(conn, expiring_ids)
             user_profile_id = get_user_profile_id(conn)
